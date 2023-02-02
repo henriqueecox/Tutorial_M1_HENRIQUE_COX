@@ -1,9 +1,9 @@
 extends Node # instancia a classe Node2D
 
-var status = 1
-var vscore = 0
-var x = 1.5 
-var y = 1.5 
+var status = 1 #define se o jogo está parado ou em movimento
+var vscore = 0 #váriavel atribuída ao placar de pontos do jogador
+var x = 1.5 #variável atribuida a posição horizontal  
+var y = 1.5 #variavel atribuidade a posição vertical 
 
 # executa essa função ao carregar o jogo
 func _ready():
@@ -17,12 +17,12 @@ func _process(delta):
 	if status == 1: # jogando
 		
 		# movimenta o cenário do fundo
-		$background.position.x -= 1*x
+		$background.position.x -= 4*x 
 		if ($background.position.x) < -200:
 			$background.position.x = 600
 			
 		# movimenta as colunas para colisão
-		$columns.position.x -= 2*x
+		$columns.position.x -= 4*x
 		if ($columns.position.x) < -550:
 			$columns.position.x = rand_range(0, 350) - 50
 			$columns.position.y = rand_range(0, 400) - 200
@@ -41,11 +41,10 @@ func _process(delta):
 			
 		# se apertou seta para baixo, aumenta o valor de y (posição vertical) do dragão
 		if Input.is_action_pressed("ui_down"):
-			$dragon.position.y += 2
-
+			$dragon.position.y += 6
 		# se apertou seta para cima, diminui o valor de y (posição vertical) do dragão
 		if Input.is_action_pressed("ui_up"):
-			$dragon.position.y -= 4
+			$dragon.position.y -= 6
 			
 	elif status == 0: # parado
 		
